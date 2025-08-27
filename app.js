@@ -1,5 +1,4 @@
 
-/* Translations + interactivity */
 const en = {
   nav: {home:"Home", services:"Services", how:"How It Works", portal:"Client Portal", faq:"FAQ", contact:"Contact"},
   tagline: "Your Trusted Partner for Tax Preparation — Individuals & Businesses",
@@ -57,11 +56,8 @@ const es = {
 let t = en;
 
 function translateNav() {
-  const pairs = [
-    ["nav_home", t.nav.home],["nav_services", t.nav.services],["nav_how", t.nav.how],
-    ["nav_portal", t.nav.portal],["nav_faq", t.nav.faq],["nav_contact", t.nav.contact]
-  ];
-  pairs.forEach(([k,v])=>{ const el=document.querySelector(`[data-i18n='${k}']`); if(el) el.textContent=v; });
+  const ids=[["nav_home","home"],["nav_services","services"],["nav_how","how"],["nav_portal","portal"],["nav_faq","faq"],["nav_contact","contact"]];
+  ids.forEach(([k,n])=>{ const el=document.querySelector(`[data-i18n='${k}']`); if(el) el.textContent=t.nav[n]; });
 }
 
 function renderFaqs(){
@@ -87,11 +83,24 @@ function applyTranslationsForPage(){
 
 function bindFlipCards(){
   document.querySelectorAll('.flip-card').forEach(card=>{
-    const buttons = card.querySelectorAll('.flip-btn');
-    const toggle = ()=> card.classList.toggle('flip');
-    buttons.forEach(btn=>btn.addEventListener('click', (e)=>{ e.preventDefault(); toggle(); }));
-    card.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); toggle(); } });
+    const toggle=()=>card.classList.toggle('flip');
+    card.querySelectorAll('.flip-btn').forEach(b=>b.addEventListener('click', e=>{e.preventDefault(); toggle();}));
+    card.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault(); toggle();}});
   });
+}
+
+function bindMobileMenu(){
+  const menu=document.getElementById('menu');
+  const links=document.getElementById('navlinks');
+  if(!menu||!links) return;
+  menu.addEventListener('click', ()=>{
+    const open = links.classList.toggle('open');
+    menu.setAttribute('aria-expanded', open ? 'true':'false');
+  });
+  // Close menu when a link is clicked (mobile)
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+    links.classList.remove('open'); menu.setAttribute('aria-expanded','false');
+  }));
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
@@ -99,6 +108,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   btn?.addEventListener('click',()=>{ t=(btn.textContent==='ES')?es:en; btn.textContent=(btn.textContent==='ES')?'EN':'ES'; translateNav(); applyTranslationsForPage(); });
   t=en; translateNav(); applyTranslationsForPage();
   bindFlipCards();
+  bindMobileMenu();
 
   const file=document.getElementById('file');
   if(file){ file.addEventListener('change',()=>{ const ul=document.getElementById('fileList'); ul.innerHTML=''; Array.from(file.files).forEach(f=>{ const li=document.createElement('li'); li.textContent='• '+f.name; ul.appendChild(li); }); }); }

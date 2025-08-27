@@ -26,17 +26,19 @@
         <a href="faq.html" data-i18n="nav_faq">FAQ</a>
         <a href="contact.html" data-i18n="nav_contact">Contact</a>
       </nav>
-      <div class="nav-cta">
-        <button id="lang" class="btn btn-outline" aria-label="Toggle language">ES</button>
+      <div class="nav-cta" style="display:flex;gap:8px;align-items:center">
+        <button id="lang" class="lang" aria-label="Toggle language">ES</button>
+        <button id="menu" class="menu-btn" aria-label="Open menu" aria-expanded="false">☰</button>
       </div>
     </div>
   </header>
   <div class="header-spacer"></div>
 
 <main>
+
   <section class="section">
     <div class="container">
-      <div class="row-between" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
         <h2 id="portalTitle">Secure Client Document Portal</h2>
         <label><span id="officeLabel">Select Your Office</span>:
           <select id="officeSelect" class="btn btn-outline">
@@ -79,6 +81,7 @@
       </div>
     </div>
   </section>
+
 </main>
 
   <footer class="footer">
