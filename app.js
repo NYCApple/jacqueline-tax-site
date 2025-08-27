@@ -1,5 +1,6 @@
 
 const en = {
+  nav: {home:"Home", services:"Services", how:"How It Works", portal:"Client Portal", faq:"FAQ", contact:"Contact"},
   tagline: "Your Trusted Partner for Tax Preparation — Individuals & Businesses",
   ctaUpload: "Upload Your Documents",
   ctaBook: "Book an Appointment",
@@ -13,6 +14,8 @@ const en = {
   faqTitle: "Frequently Asked Questions",
   contactTitle: "Contact & Locations",
   contactNote: "Reach out to the nearest office or book online.",
+  servicesTitle: "Services",
+  howTitle: "How It Works",
   faqs: [
     ["What documents do I need to start my return?","Typically W‑2, 1099s, prior‑year returns, receipts for deductions, your ID, and any pertinent forms like 1098‑T or 1098‑E."],
     ["Is my information safe when uploaded to the portal?","Yes. All files are encrypted in transit and at rest. Access is protected with secure logins and optional MFA."],
@@ -28,6 +31,7 @@ const en = {
 };
 
 const es = {
+  nav: {home:"Inicio", services:"Servicios", how:"Cómo funciona", portal:"Portal de clientes", faq:"Preguntas", contact:"Contacto"},
   tagline: "Su socio de confianza para la preparación de impuestos — Personas y Negocios",
   ctaUpload: "Suba sus documentos",
   ctaBook: "Reserve una cita",
@@ -41,6 +45,8 @@ const es = {
   faqTitle: "Preguntas Frecuentes",
   contactTitle: "Contacto y Sucursales",
   contactNote: "Comuníquese con la oficina más cercana o reserve en línea.",
+  servicesTitle: "Servicios",
+  howTitle: "Cómo funciona",
   faqs: [
     ["¿Qué documentos necesito para empezar?","Normalmente W‑2, 1099, declaración del año anterior, recibos de deducciones, identificación y formularios pertinentes como 1098‑T o 1098‑E."],
     ["¿Mi información está segura al subirla?","Sí. Los archivos se cifran en tránsito y en reposo. El acceso está protegido con inicios de sesión seguros y MFA opcional."],
@@ -55,32 +61,28 @@ const es = {
   ]
 };
 
-let current = en;
+let t = en;
 
-function setLang(lang) {
-  current = lang === 'es' ? es : en;
-  document.getElementById('lang').textContent = lang === 'es' ? 'EN' : 'ES';
-  document.getElementById('tagline').textContent = current.tagline;
-  document.getElementById('ctaUpload').textContent = current.ctaUpload;
-  document.getElementById('ctaUpload2').textContent = current.ctaUpload;
-  document.getElementById('ctaBook').textContent = current.ctaBook;
-  document.getElementById('portalTitle').textContent = current.portalTitle;
-  document.getElementById('portalSub').textContent = current.portalSub;
-  document.getElementById('officeLabel').textContent = current.officeLabel;
-  document.getElementById('dropTitle').textContent = current.dropTitle;
-  document.getElementById('dropNote').textContent = current.dropNote;
-  document.getElementById('signTitle').textContent = current.signTitle;
-  document.getElementById('signNote').textContent = current.signNote;
-  document.getElementById('faqTitle').textContent = current.faqTitle;
-  document.getElementById('contactTitle').textContent = current.contactTitle;
-  document.getElementById('contactNote').textContent = current.contactNote;
-  renderFaqs();
+function translateNav() {
+  const map = [
+    ["nav_home", t.nav.home],
+    ["nav_services", t.nav.services],
+    ["nav_how", t.nav.how],
+    ["nav_portal", t.nav.portal],
+    ["nav_faq", t.nav.faq],
+    ["nav_contact", t.nav.contact]
+  ];
+  map.forEach(([k, val]) => {
+    const el = document.querySelector(`[data-i18n='${k}']`);
+    if (el) el.textContent = val;
+  });
 }
 
 function renderFaqs() {
   const list = document.getElementById('faqList');
+  if (!list) return;
   list.innerHTML = '';
-  current.faqs.forEach(([q, a]) => {
+  t.faqs.forEach(([q, a]) => {
     const card = document.createElement('details');
     card.className = 'card';
     const sum = document.createElement('summary');
@@ -95,16 +97,46 @@ function renderFaqs() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Language toggle
-  const btn = document.getElementById('lang');
-  btn.addEventListener('click', () => {
-    const next = btn.textContent === 'ES' ? 'es' : 'en';
-    setLang(next);
+function applyTranslationsForPage() {
+  const map = {
+    tagline: t.tagline,
+    ctaUpload2: t.ctaUpload,
+    ctaBook: t.ctaBook,
+    portalTitle: t.portalTitle,
+    portalSub: t.portalSub,
+    officeLabel: t.officeLabel,
+    dropTitle: t.dropTitle,
+    dropNote: t.dropNote,
+    signTitle: t.signTitle,
+    signNote: t.signNote,
+    faqTitle: t.faqTitle,
+    contactTitle: t.contactTitle,
+    contactNote: t.contactNote
+  };
+  Object.entries(map).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el && val) el.textContent = val;
   });
-  setLang('en'); // English default
+  const servicesH2 = document.querySelector("[data-i18n='services_title']");
+  if (servicesH2) servicesH2.textContent = t.servicesTitle;
+  const howH2 = document.querySelector("[data-i18n='how_title']");
+  if (howH2) howH2.textContent = t.howTitle;
 
-  // Fake upload list
+  renderFaqs();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('lang');
+  btn?.addEventListener('click', () => {
+    t = (btn.textContent === 'ES') ? es : en;
+    btn.textContent = (btn.textContent === 'ES') ? 'EN' : 'ES';
+    translateNav();
+    applyTranslationsForPage();
+  });
+  t = en; // default English
+  translateNav();
+  applyTranslationsForPage();
+
   const file = document.getElementById('file');
   if (file) {
     file.addEventListener('change', () => {
@@ -117,22 +149,4 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-
-  // Scroll progress + active nav
-  const progress = document.getElementById('progress');
-  const links = Array.from(document.querySelectorAll('.navlinks a'));
-  const sections = links.map(a => document.querySelector(a.getAttribute('href')));
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
-      }
-    });
-  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
-  sections.forEach(s => s && io.observe(s));
-  window.addEventListener('scroll', () => {
-    const h = document.documentElement;
-    const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight);
-    progress.style.width = Math.max(0, Math.min(1, pct)) * 100 + '%';
-  }, { passive: true });
 });
