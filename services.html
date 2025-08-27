@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Services – Jaqueline Tax Group</title>
   <link rel="stylesheet" href="styles.css"/>
+  <link rel="icon" href="assets/logo.png">
 </head>
 <body>
 
@@ -26,7 +27,7 @@
         <a href="contact.html" data-i18n="nav_contact">Contact</a>
       </nav>
       <div class="nav-cta">
-        <button id="lang" class="lang" aria-label="Toggle language">ES</button>
+        <button id="lang" class="btn btn-outline" aria-label="Toggle language">ES</button>
       </div>
     </div>
   </header>
@@ -37,11 +38,76 @@
     <div class="container">
       <h2 data-i18n="services_title">Services</h2>
       <div class="grid grid-4">
-        <div class="card"><h3>Individual Tax Returns</h3><p>W‑2, 1099, itemized deductions, dependents.</p></div>
-        <div class="card"><h3>Small Business Taxes</h3><p>LLC, S‑Corp, Schedule C, bookkeeping‑ready.</p></div>
-        <div class="card"><h3>Amendments & Extensions</h3><p>Amend prior filings or file for more time.</p></div>
-        <div class="card"><h3>IRS Representation</h3><p>Support with notices, letters, and audits.</p></div>
+        <!-- Card 1 -->
+        <div class="flip-card" tabindex="0" aria-label="Individual Tax Returns card">
+          <div class="flip-inner">
+            <div class="flip-face">
+              <span class="flip-tag">Front</span>
+              <h3>Individual Tax Returns</h3>
+              <p>W‑2, 1099, dependents</p>
+              <button class="flip-btn" aria-label="Show details">Details ↺</button>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="flip-tag">Back</span>
+              <h3>Individual Tax Returns</h3>
+              <p>Full support for federal & state filings, itemized deductions, credits, dependents, retirement income, and more. Fast, accurate, and secure.</p>
+              <button class="flip-btn" aria-label="Back to front">Back ↺</button>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="flip-card" tabindex="0" aria-label="Small Business Taxes card">
+          <div class="flip-inner">
+            <div class="flip-face">
+              <span class="flip-tag">Front</span>
+              <h3>Small Business Taxes</h3>
+              <p>LLC, S‑Corp, Schedule C</p>
+              <button class="flip-btn" aria-label="Show details">Details ↺</button>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="flip-tag">Back</span>
+              <h3>Small Business Taxes</h3>
+              <p>Entity selection guidance, quarterly estimates, depreciation, payroll & sales tax coordination, and seamless bookkeeping handoff.</p>
+              <button class="flip-btn" aria-label="Back to front">Back ↺</button>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="flip-card" tabindex="0" aria-label="Amendments & Extensions card">
+          <div class="flip-inner">
+            <div class="flip-face">
+              <span class="flip-tag">Front</span>
+              <h3>Amendments & Extensions</h3>
+              <p>Fix or extend</p>
+              <button class="flip-btn" aria-label="Show details">Details ↺</button>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="flip-tag">Back</span>
+              <h3>Amendments & Extensions</h3>
+              <p>We correct prior filings and manage Form 4868/7004 extensions to avoid penalties—while keeping your filing on track.</p>
+              <button class="flip-btn" aria-label="Back to front">Back ↺</button>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="flip-card" tabindex="0" aria-label="IRS Representation card">
+          <div class="flip-inner">
+            <div class="flip-face">
+              <span class="flip-tag">Front</span>
+              <h3>IRS Representation</h3>
+              <p>Notices, audits</p>
+              <button class="flip-btn" aria-label="Show details">Details ↺</button>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="flip-tag">Back</span>
+              <h3>IRS Representation</h3>
+              <p>Response letters, payment plans, and audit support. We advocate on your behalf and guide you through every step.</p>
+              <button class="flip-btn" aria-label="Back to front">Back ↺</button>
+            </div>
+          </div>
+        </div>
       </div>
+      <p class="small muted" style="margin-top:8px">Tip: Hover or tap a card to flip. Keyboard users: focus a card and press Enter.</p>
     </div>
   </section>
 </main>

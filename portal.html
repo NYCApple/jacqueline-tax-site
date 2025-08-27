@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Client Portal – Jaqueline Tax Group</title>
   <link rel="stylesheet" href="styles.css"/>
+  <link rel="icon" href="assets/logo.png">
 </head>
 <body>
 
@@ -26,7 +27,7 @@
         <a href="contact.html" data-i18n="nav_contact">Contact</a>
       </nav>
       <div class="nav-cta">
-        <button id="lang" class="lang" aria-label="Toggle language">ES</button>
+        <button id="lang" class="btn btn-outline" aria-label="Toggle language">ES</button>
       </div>
     </div>
   </header>
@@ -35,9 +36,9 @@
 <main>
   <section class="section">
     <div class="container">
-      <div class="row-between" style="flex-wrap:wrap;gap:16px">
+      <div class="row-between" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
         <h2 id="portalTitle">Secure Client Document Portal</h2>
-        <label class="office-select"><span id="officeLabel">Select Your Office</span>:
+        <label><span id="officeLabel">Select Your Office</span>:
           <select id="officeSelect" class="btn btn-outline">
             <option>California</option><option>Colorado</option><option>Texas</option>
           </select>
@@ -57,8 +58,8 @@
         <div class="card">
           <h3 id="signTitle">Pending e‑Signatures</h3>
           <p id="signNote" class="muted">Documents ready for your signature appear here.</p>
-          <div class="card surface">
-            <div class="row-between">
+          <div class="card" style="background:#faf7f4">
+            <div style="display:flex;align-items:center;justify-content:space-between">
               <div>
                 <div class="strong" style="color:var(--blue);font-weight:700">Form 8879</div>
                 <div class="muted small">e‑Sign required</div>
@@ -70,8 +71,8 @@
         <div class="card">
           <h3>Downloads</h3>
           <ul class="list">
-            <li class="row-between"><span>2024 Federal Return (PDF)</span><a href="#" class="btn btn-outline">Download</a></li>
-            <li class="row-between"><span>2024 State Return (PDF)</span><a href="#" class="btn btn-outline">Download</a></li>
+            <li style="display:flex;align-items:center;justify-content:space-between"><span>2024 Federal Return (PDF)</span><a href="#" class="btn btn-outline">Download</a></li>
+            <li style="display:flex;align-items:center;justify-content:space-between"><span>2024 State Return (PDF)</span><a href="#" class="btn btn-outline">Download</a></li>
           </ul>
           <div class="muted small">Retention: Files preserved for a minimum of 10 years.</div>
         </div>

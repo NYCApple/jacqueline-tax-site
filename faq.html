@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>FAQ – Jaqueline Tax Group</title>
   <link rel="stylesheet" href="styles.css"/>
+  <link rel="icon" href="assets/logo.png">
 </head>
 <body>
 
@@ -26,7 +27,7 @@
         <a href="contact.html" data-i18n="nav_contact">Contact</a>
       </nav>
       <div class="nav-cta">
-        <button id="lang" class="lang" aria-label="Toggle language">ES</button>
+        <button id="lang" class="btn btn-outline" aria-label="Toggle language">ES</button>
       </div>
     </div>
   </header>
@@ -36,7 +37,13 @@
   <section class="section">
     <div class="container">
       <h2 id="faqTitle">Frequently Asked Questions</h2>
-      <div class="grid grid-2" id="faqList"></div>
+      <div class="grid grid-2" id="faqList">
+        <details class="card"><summary><strong style="color: var(--blue)">What documents do I need to start my return?</strong></summary><p class="muted">Typically W‑2, 1099s, prior‑year returns, receipts for deductions, your ID, and any pertinent forms like 1098‑T or 1098‑E.</p></details>
+        <details class="card"><summary><strong style="color: var(--blue)">Is my information safe when uploaded to the portal?</strong></summary><p class="muted">Yes. All files are encrypted in transit and at rest. Access is protected with secure logins and optional MFA.</p></details>
+        <details class="card"><summary><strong style="color: var(--blue)">Can I sign my tax documents online?</strong></summary><p class="muted">Yes. We use IRS‑compliant electronic signatures for a fast and secure experience.</p></details>
+        <details class="card"><summary><strong style="color: var(--blue)">Do you accept both individuals and small businesses?</strong></summary><p class="muted">Yes. We serve individuals, families, and businesses of all sizes.</p></details>
+        <details class="card"><summary><strong style="color: var(--blue)">How long does it take to prepare my return?</strong></summary><p class="muted">Most individual returns are completed within 5–7 business days after receiving all documents.</p></details>
+      </div>
     </div>
   </section>
 </main>
